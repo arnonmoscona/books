@@ -11,19 +11,30 @@
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
-<body style="padding: 2%;background: var(--bs-white);font-family: Roboto, sans-serif;max-width: 950px;">
+<body>
 <h1 class="mb-4 rounded-3">Book Demo with HTMX</h1>
 <main class="mt-5">
     <div id="search-form-partial" class="px-3" hx-trigger="load delay:2s">
         <form>
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col col-auto"><i class="fa fa-search align-content-center"></i></div>
-                <div class="col">
-                    <input class="form-control" type="text" name="input_search_term" id="input-search-term" placeholder="title search"
-                           hx-get="/ui/search"
-                           hx-trigger="keyup changed delay:500ms"
-                           hx-target="#search-results-partial"
+                <div class="col"><input type="text"
+                                        class="form-control"
+                                        id="input-search-term"
+                                        placeholder="title search"
+                                        hx-get="/ui/search"
+                                        hx-trigger="keyup changed delay:500ms"
+                                        hx-target="#search-results-partial"
+                                        name="input_search_term" /></div>
+                <div class="col" id="search-source">
+                    <span class="text-muted"
+                          id="search-source-tag"
+                          hx-get="/ui/show/search-source-img"
+                          hx-trigger="click"
+                          hx-target="#search-source"
                     >
+                        &lt;source/&gt;
+                    </span>
                 </div>
             </div>
         </form>

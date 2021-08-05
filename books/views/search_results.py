@@ -3,6 +3,7 @@ from typing import List
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 from books.books_db import Book
+from books.resources.resource import get_html
 
 env = Environment(
     loader=PackageLoader("views"),
@@ -18,10 +19,17 @@ env = Environment(
 
 
 def render_search_results(results: List[Book]) -> str:
-    template = env.get_template('_results.html')
-    rendered = template.render(results=results)
+    if results:
+        template = env.get_template('_results.html')
+        rendered = template.render(results=results)
+    else:
+        rendered = get_html('_zero_results')
     return rendered
 
 
 def render_book_detail(book: Book) -> str:
     return env.get_template('_book_detail.html').render(book=book)
+
+
+def render_static_tag_id(tag_id: str):
+    return get_html(f'_{tag_id.replace("-", "_")}')

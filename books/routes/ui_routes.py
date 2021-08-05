@@ -6,7 +6,7 @@ from fastapi.responses import HTMLResponse
 
 from books.books_db import find_by_title, get_by_title
 from books.resources import resource
-from books.views.search_results import render_search_results, render_book_detail
+from books.views.search_results import render_search_results, render_book_detail, render_static_tag_id
 
 ui_router = APIRouter(prefix='/ui')
 
@@ -23,6 +23,11 @@ def search(input_search_term: Optional[str] = '') -> str:
 
 
 @ui_router.get("/book/{title}", status_code=200, response_class=HTMLResponse)
-def search(title: str = '') -> str:
+def book_detail(title: str = '') -> str:
     book = get_by_title(title)
     return render_book_detail(book)
+
+
+@ui_router.get("/show/{tag_id}", status_code=200, response_class=HTMLResponse)
+def show(tag_id: str = '') -> str:
+    return render_static_tag_id(tag_id)
