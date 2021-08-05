@@ -11,12 +11,12 @@ from books.views.search_results import render_search_results, render_book_detail
 ui_router = APIRouter(prefix='/ui')
 
 
-@ui_router.get("/books", status_code=200, response_class=HTMLResponse)
+@ui_router.get("/books", status_code=200, response_class=HTMLResponse, tags=['UI'])
 def books() -> str:
     return resource.get_html('books')
 
 
-@ui_router.get("/search", status_code=200, response_class=HTMLResponse)
+@ui_router.get("/search", status_code=200, response_class=HTMLResponse, tags=['UI'])
 def search(input_search_term: Optional[str] = '') -> str:
     """
     Search the book DB
@@ -27,7 +27,7 @@ def search(input_search_term: Optional[str] = '') -> str:
     return render_search_results(results)
 
 
-@ui_router.get("/book/{title}", status_code=200, response_class=HTMLResponse)
+@ui_router.get("/book/{title}", status_code=200, response_class=HTMLResponse, tags=['UI'])
 def book_detail(title: str = '') -> str:
     """
     Render book details
@@ -38,7 +38,7 @@ def book_detail(title: str = '') -> str:
     return render_book_detail(book)
 
 
-@ui_router.get("/show/{tag_id}", status_code=200, response_class=HTMLResponse)
+@ui_router.get("/show/{tag_id}", status_code=200, response_class=HTMLResponse, tags=['UI'])
 def show(tag_id: str = '') -> str:
     """
     Used to switch tags in the UI

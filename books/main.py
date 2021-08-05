@@ -18,6 +18,22 @@ app.include_router(api_router)
 app.include_router(ui_router)
 
 
+tags_metadata = [
+    {
+        "name": "API",
+        "description": "JSON API endpoints for application clients",
+    },
+    {
+        "name": "UI",
+        "description": "Endpoints for supporting the GUI",
+        "externalDocs": {
+            "description": "htmx external docs",
+            "url": "https://htmx.org/",
+        },
+    },
+]
+
+
 @app.on_event("startup")
 async def startup_event():
     print('Initializing...')

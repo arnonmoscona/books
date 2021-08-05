@@ -9,7 +9,7 @@ api_router = APIRouter(prefix='/api/V1')
 
 
 # https://fastapi.tiangolo.com/tutorial/path-params/
-@api_router.get("/book/{title}", status_code=200)
+@api_router.get("/book/{title}", status_code=200, tags=['API'])
 def get_book_by_title(title: str) -> Dict:
     """
     API endpoint to get the details of a book.
@@ -26,7 +26,7 @@ def get_book_by_title(title: str) -> Dict:
             raise HTTPException(status_code=HTTPStatus.INTERNAL_SERVER_ERROR)
 
 
-@api_router.get("/books/titles/{title}", status_code=200)
+@api_router.get("/books/titles/{title}", status_code=200, tags=['API'])
 def find_books_by_partial_title(title: str =
                                 Query(...,
                                       title='query string',
