@@ -15,7 +15,7 @@ a:hover {
   margin-top: 16px;
 }
 
-body {
+#search-page-body {
   padding: 2%;
   background: var(--bs-white);
   font-family: Roboto, sans-serif;
