@@ -18,16 +18,31 @@ def books() -> str:
 
 @ui_router.get("/search", status_code=200, response_class=HTMLResponse)
 def search(input_search_term: Optional[str] = '') -> str:
+    """
+    Search the book DB
+    :param input_search_term: A complete or partial title (case insensitive)
+    :return: A book results partial HTML
+    """
     results = find_by_title(input_search_term) if len(input_search_term) >= 2 else []
     return render_search_results(results)
 
 
 @ui_router.get("/book/{title}", status_code=200, response_class=HTMLResponse)
 def book_detail(title: str = '') -> str:
+    """
+    Render book details
+    :param title: the exact title of the book
+    :return: a book detail partial HTML
+    """
     book = get_by_title(title)
     return render_book_detail(book)
 
 
 @ui_router.get("/show/{tag_id}", status_code=200, response_class=HTMLResponse)
 def show(tag_id: str = '') -> str:
+    """
+    Used to switch tags in the UI
+    :param tag_id: the tag ID
+    :return: the content identified by the tag ID (partial HTML)
+    """
     return render_static_tag_id(tag_id)

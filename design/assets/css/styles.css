@@ -27,8 +27,19 @@ body {
   flex: 0 0 auto;
 }
 
-#results-container #result-rows {
+#results-container {
   max-height: 300px;
   overflow-y: scroll;
+}
+
+#result-rows {
+  max-height: 25em;
+  overflow-y: scroll;
+}
+
+#home-icon {
+  height: 18px;
+  font-size: 32px;
+  color: var(--bs-blue);
 }
 
